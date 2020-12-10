@@ -22,10 +22,6 @@ class Color:
 
 
 def get_config() -> tuple:
-    """
-
-    :return:
-    """
     argparser = argparse.ArgumentParser()
     argparser.add_argument('-v', '--version',
                            action='version',
@@ -44,10 +40,6 @@ def get_config() -> tuple:
 
 
 def get_domains() -> Union[list, None]:
-    """
-    TODO: Add docstring
-    :return:
-    """
     return [_.replace('\n', '') for _ in sys.stdin.readlines()] if not sys.stdin.isatty() else None
 
 

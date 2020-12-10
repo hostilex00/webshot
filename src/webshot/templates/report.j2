@@ -7,30 +7,95 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
           crossorigin="anonymous">
     <style>
-
         body {
-            background-color: azure;
+            background-image: linear-gradient(45deg, #7bd7cc, #b476bc);
+            color: #9992ba;
         }
 
-        .card {
-            width: 400px;
+        #header {
+            background-color: #4d4962;
+            max-width: 100%;
+            padding: 10px 0 10px 10px;
+            box-shadow: 0 10px 18px 5px #242f3c;
+        }
+
+        .domain-data {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #4d4962;
+            border-radius: 8px;
+            box-shadow: 0 10px 18px 5px #242f3c;
+        }
+
+        .screenshot {
+            max-width: 100%;
+        }
+
+        .go-to-btn {
+            margin-top: 20px;
+            width: 100px;
+            background-color: #7bc4a3;
+            border-color: #7bc4a3;
+            color: #f5f5f5;
+        }
+
+        .response {
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        .response-status_code {
+            color: #ac77cb;
+        }
+
+        .response-reason {
+            color: #7bc4a3;
+        }
+
+        .response-header {
+            color: #7bd7cc;
         }
     </style>
 </head>
 <body>
-
+<div id="header">
+    <h2>WebShot Report</h2>
+</div>
 <div class="container">
-    <div id="header">
-        <h2>Report</h2>
-        {% for domain in data %}
-            <div class="card">
-                <img src="./screenshots/{{ data[domain] }}" alt="" class="card-img-top"/>
-                <div class="card-body">
-                    <h5 class="card-title">{{ domain }}</h5>
+    {% for domain in data %}
+        <div class="row domain-data">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col">
+                        <img src="./screenshots/{{ data[domain]['screenshot'] }}" alt=""
+                             class="screenshot">
+                    </div>
                 </div>
-                <a href="{{ domain }}" class="btn btn-primary">Visit</a>
+                <div class="row">
+                    <div class="col d-flex">
+                        {% if domain.startswith('http') %}
+                            <a href="{{ domain }}" target="_blank"
+                               class="btn align-self-end go-to-btn">Go
+                                to!</a>
+                        {% else %}
+                            <a href="http://{{ domain }}" target="_blank"
+                               class="btn align-self-end go-to-btn">Go to!</a>
+                        {% endif %}</div>
+                </div>
             </div>
-        {% endfor %}
+            <div class="col-8">
+                <div class="row">
+                    <div class="col">
+                        <h5>{{ domain }}</h5>
+                    </div>
+                </div>
+                <div class="row response">
+                    <div class="col">{{ data[domain]['response_raw'] }}</div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
 </body>
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

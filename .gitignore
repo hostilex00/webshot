@@ -3,4 +3,9 @@
 venv/
 # --- Jetbrains
 .idea/
-
+# --- Logs
+*.log
+# --- File extensions
+*.txt
+*.png
+*.html

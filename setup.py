@@ -10,9 +10,10 @@ setup(
     author='hostile',
     author_email='hostile.hacking@gmail.com',
     install_requires=[
-        'selenium==3.141.0',
         'chromedriver-binary==87.0.4280.88.0',
-        'jinja2==2.11.2'
+        'jinja2==2.11.2',
+        'requests',
+        'selenium==3.141.0'
     ],
     package_data={
         'webshot.templates': ['*.j2']

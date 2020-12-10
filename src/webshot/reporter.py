@@ -5,12 +5,7 @@ from webshot import cli
 
 
 def generate(output_dir: str, data: {str: str}) -> None:
-    """
-
-    :param output_dir:
-    :param data:
-    :return:
-    """
+    cli.info("Generating report...")
     env = Environment(loader=PackageLoader('webshot', 'templates'))
     template = env.get_template('report.j2')
     date = datetime.now().strftime('%d_%m_%Y_%H_%M')
