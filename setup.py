@@ -10,7 +10,6 @@ setup(
     author='hostile',
     author_email='hostile.hacking@gmail.com',
     install_requires=[
-        'chromedriver-binary==87.0.4280.88.0',
         'jinja2==2.11.2',
         'requests',
         'selenium==3.141.0'

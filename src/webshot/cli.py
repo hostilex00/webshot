@@ -26,6 +26,12 @@ def get_config() -> tuple:
     argparser.add_argument('-v', '--version',
                            action='version',
                            version='%(prog)s {}'.format(__version__))
+    argparser.add_argument('-p', '--ports',
+                           action='store',
+                           type=int,
+                           nargs='+',
+                           help='space-separated list of ports',
+                           default=[80, 443])
     argparser.add_argument('-o', '--output',
                            action='store',
                            help='output directory',
@@ -36,7 +42,7 @@ def get_config() -> tuple:
                            default=5,
                            help='number of threads')
     args = argparser.parse_args()
-    return args.output, args.threads
+    return args.ports, args.output, args.threads
 
 
 def get_domains() -> Union[list, None]:

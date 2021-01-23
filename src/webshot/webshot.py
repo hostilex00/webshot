@@ -5,7 +5,7 @@ from webshot.session import Session
 
 def main():
     cli.banner()
-    output_directory, threads = cli.get_config()
+    ports, output_directory, threads = cli.get_config()
     domains = cli.get_domains()
 
     if not domains:
@@ -15,7 +15,8 @@ def main():
     session = Session(
         output_dir=output_directory,
         threads=threads,
-        domains=domains
+        domains=domains,
+        ports=ports
     )
 
     session.run()
